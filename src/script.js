@@ -1,6 +1,27 @@
 // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
+// const viewer = new Cesium.Viewer("cesiumContainer", {
+//     terrainProvider: Cesium.createWorldTerrain(),
+// });
+// const scene = viewer.scene;
+// const canvas = viewer.canvas;
+// canvas.setAttribute("tabindex", "0"); // needed to put focus on the canvas
+// canvas.onclick = function () {
+//     canvas.focus();
+// };
+
 const viewer = new Cesium.Viewer("cesiumContainer", {
-    terrainProvider: Cesium.createWorldTerrain(),
+    terrain: Cesium.Terrain.fromWorldTerrain(),
+});
+
+const osmBuildingsTileset = await Cesium.createOsmBuildingsAsync();
+viewer.scene.primitives.add(osmBuildingsTileset);
+
+viewer.scene.camera.flyTo({
+    destination: Cesium.Cartesian3.fromDegrees(-74.019, 40.6912, 750),
+    orientation: {
+        heading: Cesium.Math.toRadians(20),
+        pitch: Cesium.Math.toRadians(-20),
+    },
 });
 const scene = viewer.scene;
 const canvas = viewer.canvas;
@@ -18,13 +39,7 @@ const ellipsoid = scene.globe.ellipsoid;
 // scene.screenSpaceCameraController.enableTilt = false;
 // scene.screenSpaceCameraController.enableLook = false;
 
-viewer.scene.camera.flyTo({
-    destination: Cesium.Cartesian3.fromDegrees(73.7191, 21.8389, 1050),
-    orientation: {
-        heading: Cesium.Math.toRadians(0),
-        pitch: Cesium.Math.toRadians(-90),
-    },
-});
+
 
 const scaler = 100.0;
 const variance = 0.05
@@ -196,9 +211,11 @@ async function predictWebcam() {
         gestureOutput.style.width = videoWidth;
         const categoryName = results.gestures[0][0].categoryName;
         const categoryScore = parseFloat(results.gestures[0][0].score * 100).toFixed(2);
-        console.log( results.handednesses[0][0]["categoryName"]);
-        const leftHand = results.handednesses[0][0]["categoryName"]== "Left"
-        if (!leftHand) {
+        const handName = results.handednesses[0][0].categoryName == "Left" ? "Right" : "Left";
+        // const handNameRev = results.handednesses[0][0].categoryName=="Left"?"Left":"Right";
+        const handScore = parseFloat(results.handednesses[0][0].score * 100).toFixed(2)
+
+        if (handName == "Left") {
             if (categoryName == "Thumb_Up") {
                 camera.lookUp(0.01);
             }
@@ -215,7 +232,7 @@ async function predictWebcam() {
                 //            // console.log("hi");
                 camera.lookLeft(0.01);
             }
-       
+
         }
         else {
             if (categoryName == "Thumb_Up") {
@@ -244,7 +261,7 @@ async function predictWebcam() {
                 camera.moveLeft(moveRate);
             }
         }
-        gestureOutput.innerText = `GestureRecognizer: ${categoryName}\n Confidence: ${categoryScore} %`;
+        gestureOutput.innerText = `GestureRecognizer: ${categoryName}\n Confidence: ${categoryScore}% \n Hand: ${handScore}% ${handName} hand`;
     }
     else {
         gestureOutput.style.display = "none";
@@ -253,4 +270,20 @@ async function predictWebcam() {
     if (webcamRunning === true) {
         window.requestAnimationFrame(predictWebcam);
     }
+}
+
+document.getElementById("goButton").addEventListener("click", goToLocation);
+
+function goToLocation() {
+    const latitude = document.getElementById('askedLatitude').value;
+    const longitude = document.getElementById('askedLongitude').value;
+    const altitude = document.getElementById('askedAltitude').value;
+
+    viewer.scene.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, altitude),
+        orientation: {
+            heading: Cesium.Math.toRadians(0),
+            pitch: Cesium.Math.toRadians(-15),
+        },
+    });
 }
