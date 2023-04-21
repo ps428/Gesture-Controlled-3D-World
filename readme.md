@@ -1,6 +1,8 @@
 # Gesture Controlled 3D World
 This mini project is made using [Mediapipe](https://mediapipe.dev/) and [CesiumJS](https://cesium.com/platform/cesiumjs/). This allows the user to control the world using their hands! 
 
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fps428%2FGesture-Controlled-3D-World&count_bg=%2317DAED&title_bg=%23555555&icon=probot.svg&icon_color=%23E7E7E7&title=Views&edge_flat=false)](https://hits.seeyoufarm.com)
+
 > Check the deployed project here: https://gesture-controlled-3-d-world.vercel.app/
 **PLEASE ALLOW CAMERA ACCESS**
 
