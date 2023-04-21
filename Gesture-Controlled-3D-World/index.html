@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./style.css">
+  <!-- Include the CesiumJS JavaScript and CSS files -->
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+
+
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.104/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.104/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="bottomnav">
+		<a href="https://github.com/ps428" target="_blank">GitHub</a>
+		<a href="https://www.linkedin.com/in/ps428/" target="_blank">LinkedIn</a>
+	</div>
+  <div id="cesiumContainer"></div>
+  <section id="demos" class="invisible">
+    <div id="gestureControls">
+      <h1>Gesture Controls:</h1>
+      <p>1. Palm Open (Right hand): Zoom in</p>
+      <p>2. Fist (Right hand): Zoom out</p>
+      <p>3. Pointing (Right hand): Move left
+      <p>4. Victory Symbol (Right hand): Move right
+      <p>5. Thumbs up (Right hand): Move up</p>
+      <p>6. Thumbs down (Right hand): Move down</p>
+      <p>7. Pointing (Left hand): Look left</p>
+      <p>8. Victory Symbol (Left hand): Look right</p>
+      <p>9. Thumbs up (Left hand): Look up</p>
+      <p>10. Thumbs down (Left hand): Look down</p>
+
+    </div>
+    <div id="searchArea">
+      <h1>Location Search</h1>
+      <input type="text" id="askedLatitude" placeholder="latitude">
+      <input type="text" id="askedLongitude" placeholder="longitude">
+      <input type="text" id="askedAltitude" placeholder="altitude (in meters)">
+      <button id="goButton" class="mdc-button mdc-button--raised">Go</button>
+    </div>
+    <div id="liveView" class="videoView">
+      <button id="webcamButton" class="mdc-button mdc-button--raised">
+        <span class="mdc-button__ripple"></span>
+        <span class="mdc-button__label">ENABLE WEBCAM</span>
+      </button>
+      <div style="position: relative;">
+        <video id="webcam" autoplay playsinline></video>
+        <canvas class="output_canvas" id="output_canvas" width="1280" height="720"
+          style="position: absolute; left: 0px; top: 0px;"></canvas>
+        <p id='gesture_output' class="output">
+      </div>
+    </div>
+     </section>
+     <div style="height: 200px;"></div>
+
+  <script type="module" src="./script.js"></script>
+  </div>
+</body>
+
+</html>
