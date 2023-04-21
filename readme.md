@@ -1,6 +1,9 @@
 # Gesture Controlled 3D World
 This mini project is made using [Mediapipe](https://mediapipe.dev/) and [CesiumJS](https://cesium.com/platform/cesiumjs/). This allows the user to control the world using their hands!
 
+## Important
+Please allow camera access to enable the gesture based controls
+
 ## How to use
 Just clone this repository and run [live-server](https://www.npmjs.com/package/live-server) or [http.server](https://docs.python.org/3/library/http.server.html) in the respective directory. All the action is there in the scr/script.js file. 
 

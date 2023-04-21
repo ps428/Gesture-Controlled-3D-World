@@ -1,0 +1,38 @@
+
+body{
+    margin: 0;
+}
+.bottomnav {
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+    background-color: #333;
+    overflow: hidden;
+    z-index: 9999;
+}
+#cesiumContainer, #demos, #gestureControls, #searchArea, #liveView{
+    margin:20px
+}
+
+.bottomnav a {
+    margin: 0;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.bottomnav a:hover {
+    margin: 0;
+    background-color: #ddd;
+    color: black;
+}
+
+.bottomnav a.active {
+    margin: 0;
+    background-color: #4CAF50;
+    color: white;
+}

@@ -17,9 +17,13 @@
 </head>
 
 <body>
+  <div class="bottomnav">
+		<a href="https://github.com/ps428" target="_blank">GitHub</a>
+		<a href="https://www.linkedin.com/in/ps428/" target="_blank">LinkedIn</a>
+	</div>
   <div id="cesiumContainer"></div>
   <section id="demos" class="invisible">
-    <div>
+    <div id="gestureControls">
       <h1>Gesture Controls:</h1>
       <p>1. Palm Open (Right hand): Zoom in</p>
       <p>2. Fist (Right hand): Zoom out</p>
@@ -33,7 +37,7 @@
       <p>10. Thumbs down (Left hand): Look down</p>
 
     </div>
-    <div>
+    <div id="searchArea">
       <h1>Location Search</h1>
       <input type="text" id="askedLatitude"placeholder="latitude">
       <input type="text" id="askedLongitude" placeholder="longitude">
