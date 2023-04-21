@@ -13,8 +13,12 @@ const viewer = new Cesium.Viewer("cesiumContainer", {
   terrain: Cesium.Terrain.fromWorldTerrain(),
 });
 
-const osmBuildingsTileset = await Cesium.createOsmBuildingsAsync();
-viewer.scene.primitives.add(osmBuildingsTileset);
+let osmBuildingsTileset;
+async function makeTileSet(){
+    osmBuildingsTileset = await Cesium.createOsmBuildingsAsync();
+    viewer.scene.primitives.add(osmBuildingsTileset);
+}
+makeTileSet()
 
 viewer.scene.camera.flyTo({
   destination: Cesium.Cartesian3.fromDegrees(-74.019, 40.6912, 750),
